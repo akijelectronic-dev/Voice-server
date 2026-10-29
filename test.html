@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice Server Test</title>
+</head>
+<body style="font-family:sans-serif;padding:20px">
+  <button onclick="t('আসসালামু আলাইকুম, আপনি কেমন আছেন?','bn')">বাংলা</button>
+  <button onclick="t('Hello, how are you?','en')">English</button>
+  <button onclick="t('مرحبا كيف حالك','ar')">العربية</button>
+  <p id="msg"></p>
+
+  <script src="voice.js?v=3"></script>
+  <script>
+    async function t(text, lang) {
+      const msg = document.getElementById("msg");
+      msg.textContent = "লোড হচ্ছে...";
+      try {
+        await speakCloud(text, lang);
+        msg.textContent = "হয়েছে ✅";
+      } catch (e) {
+        msg.textContent = "এরর: " + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
